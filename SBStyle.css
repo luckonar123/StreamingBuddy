@@ -1,0 +1,46 @@
+body {
+	margin: 0px; 
+	background-color: #cc66ff;
+}
+
+.banner {	
+    background: #ffff;
+   	text-align: center;
+	margin: 0px;
+	overflow: hidden;
+}
+
+.sticky {
+	position: fixed;
+ 	top: 0;
+ 	width: 100%;
+}
+
+.logo {
+	width: 10%; 
+	height: auto; 
+	margin: 0px;
+	float: left;
+	padding: 1%;
+}
+
+.navBar {
+	display: flex;
+	align-items: center;
+	color: #ffff;
+	font-family: sans-serif;
+
+}
+
+.pageLink {
+	color: #654321;
+	font-size: 30px;
+	
+	margin: 3%;
+}
+
+.content {
+	color: #654321;
+    font-family:"Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;
+	font-size: 2vw;
+}
