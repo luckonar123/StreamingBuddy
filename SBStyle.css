@@ -11,34 +11,79 @@ body {
    	background-color: #ffff;
 	text-align: center;
 	overflow: hidden;
-	display: flex;
 	align-items: center;
+	width: 99vw;
 }
 
-/*Makes the banner stick to top always*/
+/*Makes banner stick to top*/
 .sticky {
 	position: fixed;
  	top: 0;
- 	width: 100%;
+}
+
+.logoLink {
+	display: block;
+	width: 5%;
+}
+
+.logo {
+	height: 100%;
+	width: 100%;
+	float: left;
+	padding: 1%;
+	margin: 0;
+}
+
+.icon {
+	color: black;
+	size: 150%;
+}
+
+/*Hides the hamburger icon at first*/
+.nav .icon {
+	display: none;
+}
+
+.pageLink {
+	font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	float: left;
+  	display: block;
+  	text-align: center;
+  	text-decoration: none;
+	display: block;
+	padding: 2%;
+	align-items: center;
+	font-size: 1.3vw;
 }
 
 /* Changes the color of links on hover */
-.banner a:hover {
+.nav a:hover {
   background-color: #ddd;
   color: #7a0b01;
 }
 
-.logo {
-	width: 5%;
-	float: left;
-	padding: 1%;
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+@media screen and (max-width: 1006px) {
+  .nav a {display: none;}
+  .nav a.icon {
+    float: right;
+    display: block;
+  }
 }
 
-.pageLink {
-	flex;
-	font-size: 200%;
-	padding: 2%;
-	align-items: center;
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 1006px) {
+  .nav.responsive {position: relative;}
+  .nav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
 }
 
 /*-----------------------------------------------------------------------------------------------*/
@@ -55,7 +100,7 @@ body {
 
 .content {
 	color: #654321;
-    font-family:"Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 	font-size: 2vw;
 }
 
@@ -64,7 +109,7 @@ body {
 }
 
 .bar {
-	max-width: 100vw;
+	max-width: 99vw;
 }
 
 .infoBox {
@@ -93,10 +138,10 @@ body {
 .footer {
 	background: #212432;
     color: #ffff;
-    font-family:"Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;
+    font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 	font-size: 150%;
 	position: static;
-	width: 100vw;
+	width: 91vw;
 	padding: 4%;
 }
 
@@ -119,4 +164,67 @@ body {
 
 p.footer {
 	margin: 0;
+}
+
+/*-----------------------------------------------------------------------------------------------*/
+
+/*Compatibility Test Page Style */
+
+.Picdiv {
+	background-image: url("compatImg.jpg");
+	background-size: 100vw;
+	background-repeat: no-repeat;
+	padding: 30%;
+	padding-bottom: 7%;
+}
+
+.compatcontent {
+	color: #654321;
+    font-family:"Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+	font-size: 2vw;
+	margin-left: 3%;
+	margin-right: 3%;
+}
+
+.options {
+	display: flex;
+	width: 100vw;
+}
+
+.rightcol {
+	flex: 50%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.leftcol {
+	flex: 50%;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.option {
+	flex: 50%;
+}
+
+
+.pic {
+	width: 50%;
+}
+
+.button {
+  background-color: #8a173a;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 50%;
+}
+
+.button:hover {
+	background-color: #c79dc3;
 }

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="SBStyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Compatibility Test</title>
+</head>
+
+<script language="javascript">
+	function myFunction() {
+  		var x = document.getElementById("mynav");
+  		if (x.className === "nav") {
+    		x.className += " responsive";
+  		} else {
+   			x.className = "nav";
+  		}
+	}
+</script>
+
+<body>
+	<div class="banner sticky"> 
+		<a href="index.html" class="logoLink"><img src="Logo2.png" class="logo"/></a>
+		<div class="nav" id="mynav">
+			<a href="index.html" class="pageLink" class="active"> Home </a>
+			<a class="pageLink"> Popular Now </a>
+			<a class="pageLink"> Shows Coming/Leaving </a>
+			<a href="CompatTest.html" class="pageLink"> Compatibility Test! </a>
+			<a class="pageLink"> Sumbit a Show Review </a>
+			<a class="pageLink"> Donate </a>
+			<a class="pageLink"> Contact Us </a>
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+		   	 	<i class="fa fa-bars"></i></a>
+		</div>
+	</div>
+
+<!-- Everything above this comment goes on every page (Change only the title and meta) -->
+
+<!-- Individual Page Content in Here -->
+	<!-- Note: The banner covers part of the top of the page, so make sure you use padding to see the content -->
+	<script language="javascript">
+		var Player1 = null;
+		var Player2 = null;
+		var submit1 = false;
+		var submit2 = false;
+
+		function Score(player, q1, q2, q3, q4, q5) {
+			this.player = player;
+			this.q1 = q1;
+			this.q2 = q2;
+			this.q3 = q3;
+			this.q4 = q4;
+			this.q5 = q5;
+		}
+
+		$(document).ready(function() {
+			//Hides the tests to begin with
+			$('#test1').hide();
+			$('#test2').hide();
+			$('#results').hide();
+			$('#reset').hide();
+		});
+
+		function onTest1() {
+			$('#test1').show();
+			$('#test2').hide();
+	   	}
+
+	   	function onTest2() {
+			$('#test2').show();
+			$('#test1').hide();
+		}
+
+	   	function onSubmit1() {
+	   		//Gather each answer
+			var ans1 = $('input[name=optionQ1]:checked', "#test1").val();
+			var ans2 = $('input[name=optionQ2]:checked', "#test1").val();
+			var ans3 = $('input[name=optionQ3]:checked', "#test1").val();
+			var ans4 = $('input[name=optionQ4]:checked', "#test1").val();
+			var ans5 = $('input[name=optionQ5]:checked', "#test1").val();
+
+
+			//Create a Score object for this person's scores
+			Player1 = new Score("player1", ans1, ans2, ans3, ans4, ans5);
+			console.log(Player1);
+
+			$('#test1').hide();
+			document.getElementById("directions").innerHTML = "Your friend has taken their test!";
+
+			submit1 = true;
+			setColor();
+	   	}
+		
+		function onSubmit2() {
+	   		//Gather each answer
+			var ans1 = $('input[name=optionQ1]:checked', "#test2").val();
+			var ans2 = $('input[name=optionQ2]:checked', "#test2").val();
+			var ans3 = $('input[name=optionQ3]:checked', "#test2").val();
+			var ans4 = $('input[name=optionQ4]:checked', "#test2").val();
+			var ans5 = $('input[name=optionQ5]:checked', "#test2").val();
+
+
+			//Create a Score object for this person's scores
+			Player2 = new Score("player2", ans1, ans2, ans3, ans4, ans5);
+			console.log(Player2);
+
+			$('#test2').hide();
+			document.getElementById("directions").innerHTML = "You have taken your test!";
+
+			submit2 = true;
+			setColor();
+	   	}
+
+		function onResults() {
+			$('#results').show();
+			$("#directions").hide();
+			$('#test1').hide();
+			$('#test2').hide();
+
+			if(errorCheck() == false) {
+				return;
+			}
+
+			$("#firstbutton").hide();
+			$("#secondbutton").hide();
+			$("#thirdbutton").hide();
+			$("#reset").show();
+
+			var count = 0;
+
+			if(Player1.q1 == Player2.q1){
+				count += 1;
+			}
+			if(Player1.q2 == Player2.q2){
+				count += 1;
+			}
+			if(Player1.q3 == Player2.q3){
+				count += 1;
+			}
+			if(Player1.q4 == Player2.q4){
+				count += 1;
+			}
+			if(Player1.q5 == Player2.q5){
+				count += 1;
+			}
+
+
+			if(count == 0){
+				document.getElementById("scoring").innerHTML = "0% MATCH!";
+				document.getElementById("describe").innerHTML = "You are complete opposites! I would never stream together if I were you.";
+			}
+			if(count == 1){
+				document.getElementById("scoring").innerHTML = "20% MATCH!";
+				document.getElementById("describe").innerHTML = "You are very different in your streaming habits! Try not to take 2 hours just to agree on a movie and then end up just going to sleep...";
+			}
+			if(count == 2){
+				document.getElementById("scoring").innerHTML = "40% MATCH!";
+				document.getElementById("describe").innerHTML = "You are kind of similar! Maybe you can both watch the same show and talk about it as you go! But if I were you, I'd still watch it in different rooms.";
+			}
+			if(count == 3){
+				document.getElementById("scoring").innerHTML = "60% MATCH!";
+				document.getElementById("describe").innerHTML = "You're a pretty solid pair! It might take a couple minutes of discussion to decide on the movie to watch, but you'll both end up happy with the choice!";
+			}
+			if(count == 4){
+				document.getElementById("scoring").innerHTML = "80% MATCH!";
+				document.getElementById("describe").innerHTML = "Wow! You are basically the same person! You both have AMAZING streaming agendas.";
+			}
+			if(count == 5){
+				document.getElementById("scoring").innerHTML = "100% MATCH!";
+				document.getElementById("describe").innerHTML = "THAT'S AMAZING! YOU ARE ONE AND THE SAME! You two should stream together ALL THE TIME!";
+			}
+		}
+
+		function errorCheck() {
+			if(Player1 == null) {
+				document.getElementById("directions").innerHTML = "Your friend hasn't taken their test yet!";
+				$("#directions").show();
+				return false;
+			}
+
+			if(Player2 == null) {
+				document.getElementById("directions").innerHTML = "You haven't taken your test yet!";
+				$("#directions").show();
+				return false;
+			}
+
+			for (x in Player1) {
+				if (Player1[x] == undefined) {
+					console.log(Player1.x);
+					document.getElementById("directions").innerHTML = "Your friend hasn't answered all of the questions! Have them go back to their test and make a selection for each question.";
+					$("#directions").show();
+					return false;
+				}
+			}
+			for (x in Player2) {
+				if (Player2[x] == undefined) {
+					document.getElementById("directions").innerHTML = "You haven't answered all of the questions! Go back to your test and make a selection for each question.";
+					$("#directions").show();
+					return false;
+				}
+			}
+			return true;
+		}
+
+	    function setColor() {
+	        if (submit1 == true) {
+	        	var property = document.getElementById("firstbutton");
+	            property.style.backgroundColor = "#59189e";       
+	        }
+	        if (submit2 == true) {
+	        	var property = document.getElementById("secondbutton");
+	            property.style.backgroundColor = "#59189e";       
+	        }
+	    }
+
+	</script>
+
+	<div class="Picdiv">
+	</div>
+
+	<div  class="compatcontent">
+		<h1> Take a Compatibility Test! </h1>
+		<p id="directions"> <strong >Directions: </strong> You and a friend will take two separate tests and press "Submit" at the bottom of each one. No peeking! Press the "Get Results" button to see how compatible you are when you're both finished!</p>
+		<br> 
+
+		<input type = "button" value = "Friend Starts Test!" id="firstbutton" onclick="onTest1()" class="button"/>
+		<input type = "button" value = "You Start Test!" id="secondbutton" onclick="onTest2()" class="button"/>
+		<input type = "button" value = "Get Results" id= "thirdbutton" onclick="onResults()" class="button"/>
+		<input type = "button" value = "Try Again" id="reset" onclick="window.location.reload()" class="button"/>
+
+		<form id="test1">
+
+			<h3> 1) Which of the following shows do you prefer?</h3>
+			<br>
+			<div class="options" id="q1">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ1' value='friends'>
+				    		<img src="friends.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ1' value='lost'>
+				    		<img src="lost.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ1' value='kardashians'>
+				    		<img src="kardashians.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ1' value='LAO'>
+				    		<img src="LAO.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br>
+
+			<h3> 2) Which of the following actors is your favorite?</h3>
+			<br>
+			<div class="options" id="q2">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ2' value='steve'>
+				    		<img src="steve.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ2' value='natalie'>
+				    		<img src="natalie.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ2' value='denzel'>
+				    		<img src="denzel.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ2' value='kristen'>
+				    		<img src="kristen.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br>
+
+			<h3> 3) Choose a place to cozy up and watch a movie</h3>
+			<br>
+			<div class="options" id="q3">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ3' value='theatre'>
+				    		<img src="theatreImg.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ3' value='hometheatre'>
+				    		<img src="hometheatre.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ3' value='drivein'>
+				    		<img src="drivein.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ3' value='couch'>
+				    		<img src="couch.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br>
+
+			<h3> 4) Pick a binge snack</h3>
+			<br>
+			<div class="options" id="q4">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ4' value='pop'>
+				    		<img src="pop.jpg" class="pic">
+				    		
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ4' value='pizza'>
+				    		<img src="pizza.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ4' value='candy'>
+				    		<img src="candy.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ4' value='icecream'>
+				    		<img src="icecream.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br>
+
+			<h3> 5) Pick the oldest show you've seen </h3>
+			<br>
+			<div class="options" id="q5">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ5' value='cheers'>
+				    		<img src="cheers.jpg" class="pic">
+				    		
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ5' value='9021'>
+				    		<img src="90210.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ5' value='ilovelucy'>
+				    		<img src="ilovelucy.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ5' value='simpsons'>
+				    		<img src="simpsons.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br>
+			<input type = "button" value = "Submit" onclick="onSubmit1()" class="button"/>
+		</form>
+
+
+		<form id="test2">
+
+			<h3> 1) Which of the following shows do you prefer?</h3>
+			<br>
+			<div class="options" id="q1">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ1' value='friends'>
+				    		<img src="friends.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ1' value='lost'>
+				    		<img src="lost.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ1' value='kardashians'>
+				    		<img src="kardashians.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ1' value='LAO'>
+				    		<img src="LAO.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br>
+
+			<h3> 2) Which of the following actors is your favorite?</h3>
+			<br>
+			<div class="options" id="q2">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ2' value='steve'>
+				    		<img src="steve.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ2' value='natalie'>
+				    		<img src="natalie.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ2' value='denzel'>
+				    		<img src="denzel.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ2' value='kristen'>
+				    		<img src="kristen.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br><br><br>
+
+			<h3> 3) Choose a place to cozy up and watch a movie</h3>
+			<br>
+			<div class="options" id="q3">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ3' value='couch'>
+				    		<img src="theatreImg.jpg" class="pic">
+				    		
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ3' value='hometheatre'>
+				    		<img src="hometheatre.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ3' value='drivein'>
+				    		<img src="drivein.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ3' value='theatre'>
+				    		<img src="couch.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br>
+
+			<h3> 4) Pick a binge snack</h3>
+			<br>
+			<div class="options" id="q4">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ4' value='pop'>
+				    		<img src="pop.jpg" class="pic">
+				    		
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ4' value='pizza'>
+				    		<img src="pizza.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ4' value='candy'>
+				    		<img src="candy.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ4' value='icecream'>
+				    		<img src="icecream.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br>
+
+			<h3> 5) Pick the oldest show you've seen </h3>
+			<br>
+			<div class="options" id="q5">
+				<div class="leftcol">
+				  	<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ5' value='cheers'>
+				    		<img src="cheers.jpg" class="pic">
+				    		
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ5' value='9021'>
+				    		<img src="90210.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+				<div class="rightcol">
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ5' value='ilovelucy'>
+				    		<img src="ilovelucy.jpg" class="pic">
+				      	</label>
+					</div>
+					<div class="option">
+				  		<label>
+				    		<input type='radio' name='optionQ5' value='simpsons'>
+				    		<img src="simpsons.jpg" class="pic">
+				      	</label>
+					</div>
+				</div>
+			</div>
+			<br><br>
+			<input type = "button" value = "Submit" onclick="onSubmit2()" class="button"/> 	  	
+		</form>
+
+		<div id="results">
+			<h3 id="scoring"></h3>
+			<p id="describe"></p>
+		</div>
+
+	</div>
+	<br><br>
+
+
+<!-- Individual Page Content Ends Here -->
+
+
+<!-- Add the footer below to every page as well -->
+	
+	<div class="footer">
+		<img src="LogoFooter.png" class="logoFoot"/>
+		<div class="footContain">
+			<div class="flexFoot">
+				<p> Streaming Buddy <p>
+				<a href="#top"> Back to Top </a>
+			</div>
+			<div class="flexFoot">
+				<p> Quick Contact Info </p>
+				<ul>
+					<li> Phone: 111-222-3333 </li>
+					<li> Email: support@streamingbuddy.com </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

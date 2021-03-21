@@ -2,22 +2,38 @@
 <html>
 <head>
 	<link rel="stylesheet" href="SBStyle.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Streaming Buddy</title>
 </head>
 
+<script language="javascript">
+	function myFunction() {
+  		var x = document.getElementById("mynav");
+  		if (x.className === "nav") {
+    		x.className += " responsive";
+  		} else {
+   			x.className = "nav";
+  		}
+	}
+</script>
+
 <body>
 	<div class="banner sticky"> 
-		
-			<img src="Logo2.png" class="logo"/>
-		
-		<a href="index.html" class="pageLink"> Home </a>
-		<a class="pageLink"> Popular Now </a>
-		<a class="pageLink"> Shows Coming/Leaving </a>
-		<a class="pageLink"> Compatibility Test! </a>
-		<a class="pageLink"> Sumbit a Show Review </a>
-		<a class="pageLink"> Donate </a>
-		<a class="pageLink"> Contact Us </a>
+		<a href="index.html" class="logoLink"><img src="Logo2.png" class="logo"/></a>
+		<div class="nav" id="mynav">
+			<a href="index.html" class="pageLink" class="active"> Home </a>
+			<a class="pageLink"> Popular Now </a>
+			<a class="pageLink"> Shows Coming/Leaving </a>
+			<a href="CompatTest.html" class="pageLink"> Compatibility Test! </a>
+			<a class="pageLink"> Sumbit a Show Review </a>
+			<a class="pageLink"> Donate </a>
+			<a class="pageLink"> Contact Us </a>
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+		   	 	<i class="fa fa-bars"></i></a>
+		</div>
 	</div>
+
+	<!-- Everything above this comment goes on every page -->
 
 	<div class="TVdiv">
 	</div>
@@ -61,9 +77,9 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
+
+	<!-- Add the footer to every page as well -->
 
 	<div class="footer">
 		<img src="LogoFooter.png" class="logoFoot"/>
@@ -81,10 +97,6 @@
 			</div>
 		</div>
 	</div>
-
-
-	
-
 
 </body>
 </html>
