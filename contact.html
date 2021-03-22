@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Streaming Buddy</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="SBStyle.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <style type= 'text/css'>
+        h2 {
+            font-size: 20px;
+        }
+        .resizedTextbox {
+            height:200px;
+            width:800px;
+            font-size:14pt;
+        }
+        .Bcolor{
+            margin-left: -200%;
+            background-color:rgb(217, 217, 217);
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .info {
+        	margin: 10%;
+        }
+        
+        .popup{
+            background-color: rgb(128, 128, 255);
+            font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+            font-size: 40px;
+            padding: 40px;
+        }
+        
+    </style>   
+    
+</head>
+
+<script language="javascript">
+
+	function myFunction() {
+  		var x = document.getElementById("mynav");
+  		if (x.className === "nav") {
+    		x.className += " responsive";
+  		} else {
+   			x.className = "nav";
+  		}
+	}
+    
+</script>
+
+<body>
+    
+    <script language="javascript">
+    
+    function clearStuff()
+    {
+        document.getElementById("emailinfo").value = "Get Streaming, Buddy!"; 
+        document.getElementById("name").value = "Get Streaming, Buddy!"; 
+        document.getElementById("email").value = "Get Streaming, Buddy!"; 
+
+    }
+    
+    
+    $( function() {
+      $( "#dialog" ).dialog({
+        autoOpen: false,
+        show: {
+          effect: "blind",
+          duration: 1000
+        },
+        hide: {
+          effect: "explode",
+          duration: 1000
+        }
+      });
+   
+      $( "#opener" ).on( "click", function() {
+        $( "#dialog" ).dialog( "open" );
+      });
+    } );
+
+
+    </script>
+    
+    
+    
+	<div class="banner sticky"> 
+		<a href="index.html" class="logoLink"><img src="Logo2.png" class="logo"/></a>
+		<div class="nav" id="mynav">
+			<a href="index.html"> Home </a>
+			<a class="pageLink"> Popular Now </a>
+			<a class="pageLink"> Shows Coming/Leaving </a>
+			<a href="CompatTest.html" class="pageLink"> Compatibility Test! </a>
+			<a class="pageLink"> Sumbit a Show Review </a>
+			<a class="pageLink"> Donate </a>
+			<a class="pageLink" class="active pageLink" > Contact Us </a>
+			<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+		   	 	<i class="fa fa-bars"></i></a>
+		</div>
+	</div>
+
+
+
+    <div class="content">
+        <div class="info">
+            
+            <h1>About Us</h1>
+            <p style="font-size: 20px;">Our mission is to make the life of TV fanatics simpler. We have all spent 
+            too long browsing on a streaming site for hours, only to find yourself
+            with nothing to watch. With Streaming Buddy, you can browse through tv shows in
+            all of your favorite streaming websites, and find something to watch immediately!
+            Our team promises that you will be eating popcorn binging your new favorite
+            show within 5 minutes of loging on to our site! Get Streaming, Buddy!
+            
+            </p>
+            
+            <h2 class="head"  style="font-size: 30px;"> Contact Us</h2>
+            <h2 class="expl"> Reach us in any way if you have any questions about us, our offers, or our mission!</h2>
+
+            
+
+
+
+    <div class="Bcolor">
+
+        <form action="/action_page.php" class="email">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" style="width:800px; margin-left:36px;"><br><br>
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" style="width:800px; margin-left:45px;"><br><br>
+          <label for="lname" style="vertical-align: top;">Message</label>
+          <textarea type="text" cols="40" rows="5" id="emailinfo" name="emailinfo"  class="resizedTextbox"></textarea>
+          <button id="opener" onclick="clearStuff()">Send</button>
+        </form>
+        
+    </div>
+
+</div>
+    <div class="contact info" style="text-align: center; margin-top:-110px;">
+        <a href="tel:+1234567891">Call Us </a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          Follow our
+        <a href = "https://www.instagram.com/kyliejenner/" target="_blank">Instagram</a>  
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Retweet us at our
+        <a href = "https://www.twitter.com/kyliejenner/" target="_blank">Twitter</a>
+    </div>
+    
+    <div class="Bpop" style="background-color: rgb(217, 217, 217);">
+        
+    <div id="dialog" class="popup">
+        <p>Thank you for contacting us! We will get back to you shortly!</p>
+    </div>
+    
+    </div>
+
+    
+    </div>
+    
+    	<div class="footer">
+    		<img src="LogoFooter.png" class="logoFoot"/>
+    		<div class="footContain">
+    			<div class="flexFoot">
+    				<p> Streaming Buddy <p>
+    				<a href="#top"> Back to Top </a>
+    			</div>
+    			<div class="flexFoot">
+    				<p> Quick Contact Info </p>
+    				<ul>
+    					<li> Phone: 111-222-3333 </li>
+    					<li> Email: support@streamingbuddy.com </li>
+    				</ul>
+    			</div>
+    		</div>
+    	</div>
+
+    </body>
+    </html>
